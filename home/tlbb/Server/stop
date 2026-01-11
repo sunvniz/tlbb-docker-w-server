@@ -1,0 +1,117 @@
+#!/bin/bash
+
+userage()
+{
+	echo "Usage: ./stop billing|log"
+}
+
+server() {
+	###### stop Server ######
+	SERVERPID=`ps aux | grep "./Server" | grep -v grep | awk '{print $2}'`
+	if [ "$SERVERPID" != "" ] ; then
+		touch quitserver.cmd
+		echo "========= stopping Server ========="
+
+		until
+		[ "$?" = "1" ]
+		do
+			ps aux | grep -i "./Server -loadscriptonce" | grep -v grep >/dev/null 2>&1
+		done
+		sleep 5
+		echo "====>>> Server stoped completely !!!!!!"
+	fi
+}
+
+login() {
+	###### stop Login ######
+	LOGINPID=`ps aux | grep "./Login" | grep -v grep | awk '{print $2}'`
+	if [ "$LOGINPID" != "" ] ; then
+		echo "========= Login is stopping ========="
+		kill -9 $LOGINPID
+
+		# until
+		# [ "$?" = "1" ]
+		# do
+		#   ps aux | grep -i "./Login" | grep -v grep >/dev/null 2>&1
+		# done
+		echo "====>>> Login stoped completely !!!!!!"
+	fi
+}
+
+world() {
+	###### stop World ######
+	WORLDPID=`ps aux | grep -i "./World" | grep -v grep | awk '{print $2}'`
+	if [ "$WORLDPID" != "" ] ; then
+		echo "========= World is stopping ========="
+		sleep 5
+		kill -9 $WORLDPID
+
+		# until
+		# [ "$?" = "1" ]
+		# do
+		#   ps aux | grep -i "./World" | grep -v grep >/dev/null 2>&1
+		# done
+		# kill -9 $WORLDPID
+		echo "====>>> World stoped completely !!!!!!"
+	fi
+}
+
+shm() {
+	###### stop ShareMemory ######
+	SHMPID=`ps aux | grep -i "./ShareMemory" | grep -v grep | awk '{print $2}'`
+	if [ "$SHMPID" != "" ] ; then
+		#kill -9 $SHMPID
+		touch exit.cmd
+		echo "========= ShareMemroy is saving data ========="
+
+		until
+		[ "$?" = "1" ]
+		do
+			ps aux | grep -i "./ShareMemory" | grep -v grep >/dev/null 2>&1
+		done
+		SHMPID=`ps aux | grep -i "./ShareMemory" | grep -v grep | awk '{print $2}'`
+		if [ "$SHMPID" != "" ] ; then
+			kill -9 $SHMPID
+		fi
+		echo "====>>> ShareMemory stoped completely !!!!!!"
+	fi
+}
+
+billing() {
+	_running=`ps -A | grep Billing | awk '{print $1}'`
+	if [ "$_running" != "" ] ; then
+		echo "========= Billing is stopping ========="
+		kill -9 $_running
+		echo "====>>> Billing is stopped !!!!!!"
+	fi
+}
+
+if [ $# != 1 ] ; then
+	#billing
+	server
+	login
+	world
+	shm
+
+	echo "====>>> ALL ARE STOPPED <<<===="
+	exit 1
+fi
+
+case $1 in
+	billing)
+	billing
+	;;
+	log)
+	hasLog=`find ./Log -name "*.log"`
+	if [ "$hasLog" ] ; then
+		rm -r ./Log/*.log
+		echo "====>>> ALL LOGGING ARE DELETED <<<===="
+	else
+		echo "====>>> Log file not found <<<===="
+	fi
+	;;
+	*)
+	userage
+	exit 1
+	;;
+esac

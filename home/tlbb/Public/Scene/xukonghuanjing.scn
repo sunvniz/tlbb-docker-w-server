@@ -1,0 +1,4 @@
+[System]
+navmapname=xukonghuanjing.nav
+monsterfile=xukonghuanjing_monster.ini
+eventfile=xukonghuanjing_area.ini

@@ -1,0 +1,8 @@
+[System]
+navmapname=petisland_5.nav
+monsterfile=petisland_5_monster.ini
+patrolpoint=petisland_5_patrolpoint.ini
+growpointdata=petisland_5_growpoint.txt
+growpointsetup=petisland_5_growpointsetup.txt
+eventfile=petisland_5_area.ini
+petfile=petisland_5_pet.ini

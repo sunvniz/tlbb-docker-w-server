@@ -1,0 +1,4 @@
+[System]
+navmapname=xuezhanymg.nav
+monsterfile=xuezhanymg_monster.ini
+patrolpoint=_xuezhanymg_patrolpoint.ini

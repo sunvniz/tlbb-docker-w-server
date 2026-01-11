@@ -1,5 +1,6 @@
 /.idea
 /mysql/data
 /home/*.log
-/home/tlbb
 /home/tlbb.tar.gz
+/home/bill/*.log
+/home/bill/config.yaml

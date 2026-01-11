@@ -8,7 +8,7 @@ services:
     secrets:
       - db_password
     volumes:
-      - ./mysql/data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
       - ./mysql/sqls:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
@@ -21,7 +21,10 @@ services:
     hostname: db_server
 
   game_server:
-    image: liuguangw/game_server:latest
+    build:
+      context: ./image/src
+      dockerfile: Dockerfile
+    # image: liuguangw/game_server:latest
     restart: always
     volumes:
       - ./home:/home
@@ -53,7 +56,8 @@ services:
     hostname: game_server
     depends_on:
       - db_server
-
+volumes:
+  mysql_data:
 secrets:
   db_password:
     file: db_password.txt

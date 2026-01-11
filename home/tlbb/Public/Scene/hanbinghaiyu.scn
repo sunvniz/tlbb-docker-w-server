@@ -1,0 +1,6 @@
+[System]
+navmapname=hanbinghaiyu.nav
+monsterfile=hanbinghaiyu_monster.ini
+patrolpoint=hanbinghaiyu_patrolpoint.ini
+eventfile=hanbinghaiyu_area.ini
+ 
