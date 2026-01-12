@@ -54,6 +54,7 @@ function x200031_OnDefaultEvent( sceneId, selfId, targetId )
 		BeginEvent(sceneId)
 			AddText(sceneId,x200031_g_MissionName);
 			AddText(sceneId,x200031_g_MissionContinue);
+			
 		EndEvent(sceneId)
  		
 		DispatchMissionDemandInfo(sceneId,selfId,targetId,x200031_g_ScriptId,x200031_g_MissionId,done)
@@ -178,7 +179,6 @@ end
 --¼ì²âÐúng·ñ¿ÉÒÔÌá½»
 --**********************************
 function x200031_CheckSubmit( sceneId, selfId )
-
 	local bRet = CallScriptFunction( SCENE_SCRIPT_ID, "CheckSubmit", sceneId, selfId, x200031_g_MissionId )
 	if bRet ~= 1 then
 		return 0
@@ -261,10 +261,10 @@ end
 --**********************************
 function x200031_OnEnterArea( sceneId, selfId, zoneId )
 	
+
 	local misIndex = GetMissionIndexByID(sceneId,selfId,x200031_g_MissionId)			-- ði¬mµ½ÈÎÎñtoÕ ðµ ÐòÁÐºÅ
 	
-	if zoneId == 0 and
-		 LuaFnGetCopySceneData_Param(sceneId, 0) == FUBEN_JUQING_CANGMANGSHAN then
+	if zoneId == 0 then
 		if GetMissionParam(sceneId, selfId, misIndex, 0) == 0 then
 			BeginEvent(sceneId)
 				AddText(sceneId, "Ðã løc soát S· Vß½ng ÐÕi Doanh: 1/1")
@@ -274,8 +274,7 @@ function x200031_OnEnterArea( sceneId, selfId, zoneId )
 			SetMissionByIndex(sceneId,selfId,misIndex,0,1)
 		end
 		
-	elseif zoneId == 1 and
-	 	 LuaFnGetCopySceneData_Param(sceneId, 0) == FUBEN_JUQING_CANGMANGSHAN then
+	elseif zoneId == 1 then
 		if GetMissionParam(sceneId, selfId, misIndex, 1) == 0 then
 			BeginEvent(sceneId)
 				AddText(sceneId, "Ðã løc soát ngân kh¯ riêng cüa Hoàng Thái Thúc: 1/1")
@@ -285,8 +284,7 @@ function x200031_OnEnterArea( sceneId, selfId, zoneId )
 			SetMissionByIndex(sceneId,selfId,misIndex,1,1)
 		end
 		
-	elseif zoneId == 2 and
-		 LuaFnGetCopySceneData_Param(sceneId, 0) == FUBEN_JUQING_CANGMANGSHAN then
+	elseif zoneId == 2 then
 		if GetMissionParam(sceneId, selfId, misIndex, 2) == 0 then
 			BeginEvent(sceneId)
 				AddText(sceneId, "Ðã løc soát ðß¶ng phía Ðông núi Thß½ng Mang: 1/1")
@@ -296,8 +294,7 @@ function x200031_OnEnterArea( sceneId, selfId, zoneId )
 			SetMissionByIndex(sceneId,selfId,misIndex,2,1)
 		end
 		
-	elseif zoneId == 3 and
-		 LuaFnGetCopySceneData_Param(sceneId, 0) == FUBEN_JUQING_CANGMANGSHAN then
+	elseif zoneId == 3 then
 		if GetMissionParam(sceneId, selfId, misIndex, 3) == 0 then
 			BeginEvent(sceneId)
 				AddText(sceneId, "Ðã løc soát ðß¶ng phía Tây núi Thß½ng Mang: 1/1")

@@ -25,6 +25,14 @@ end
 function x001031_OnEventRequest( sceneId, selfId, targetId, eventId )
 
 	if GetNumText() == 10 then
+		--AddMoneyJZ( sceneId, selfId, 50000000 )	--Lînh ÕäÊÞt?n 5000B?c
+		BeginAddItem(sceneId)
+			AddItem( sceneId, 20502008, 250 )
+			AddItem( sceneId, 20501008, 250 )
+			AddItem( sceneId, 20500008, 250 )
+		EndAddItem(sceneId,selfId)
+		AddItemListToHuman(sceneId,selfId)
+		--YuanBao( sceneId, selfId, targetId, 1, 50000)
 		--´ò¿ªÕäÊÞÑ¡Ôñ½çÃæ
 		BeginUICommand( sceneId )
 			UICommand_AddInt( sceneId, targetId )
@@ -41,7 +49,6 @@ end
 --Lînh ÕäÊÞCuµc chiªn ³ÆºÅ
 --**********************************
 function x001031_OnAcceptPetTitle( sceneId, selfId, targetId, petHid, petLid )
-
 	if petHid == nil or petLid == nil then
 		x001031_MsgBox( sceneId, selfId, targetId, "Vui lòng ch÷n trân thú mu¯n ð±i danh hi®u" )
 		return

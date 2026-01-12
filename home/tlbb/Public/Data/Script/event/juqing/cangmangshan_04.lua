@@ -13,7 +13,7 @@ x200033_g_MissionId = 29
 x200033_g_PreMissionId = 28
 
 --Ä¿±êNPC
-x200033_g_Name = "Gia Lu§t H°ng C½ "
+x200033_g_Name = "Gia Lu§t H°ng C½"
 
 --Ðúng·ñÐúngTinhÓ¢ÈÎÎñ
 x200033_g_IfMissionElite = 1
@@ -50,6 +50,7 @@ function x200033_OnDefaultEvent( sceneId, selfId, targetId )
 		local sceneType = LuaFnGetSceneType(sceneId) 
 		if sceneType == 1 then --³¡¾°ÀàÐÍÐúng¸±±¾
 			-- ¼ì²âÏÂTên,°²È« ði¬m ði¬m
+			
 			if GetName(sceneId, targetId) == x200033_g_Name  then
 		    BeginEvent(sceneId)
 				AddText(sceneId,x200033_g_MissionName)
